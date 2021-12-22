@@ -1,0 +1,99 @@
+:root {
+  --main-bg-color: #020116;
+  --main-secondary-color: #1A1E3D;
+  --main-txt-color: #696A7E;
+  --main-txt-hover-color: #C5C6D3;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+/* room list side bar styling */
+.room-list {
+  background-color: var(--main-secondary-color);
+}
+
+.room-bar {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.room-bar h4 {
+  color: var(--main-txt-color);
+}
+
+.room-bar h5 {
+  color: var(--main-txt-color);
+}
+
+/* room chatbox styling */
+.room-wrapper {
+  height: 100vh;
+}
+
+.current-room-txt-wrapper h2 {
+  color: var(--main-txt-hover-color);
+}
+
+.chatbox {
+  display: flex;
+  height: 85%;
+  overflow-y: scroll;
+}
+
+.column-1 {
+  flex: 1;
+}
+
+.msg-row {
+  display: flex;
+  align-items: center;
+  margin: 40px;
+  justify-content: flex-end;
+}
+
+.msg-row-2 {
+  justify-content: flex-start !important;
+}
+
+.msg-text {
+  background: rgba(31, 28, 90, 1);
+  padding: 20px 40px;
+  border-radius: 8px;
+  font-weight: 300;
+  color: white;
+  flex-basis: 40%;
+}
+
+.msg-text-2 {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.msg-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.input-chat-wrapper input {
+  width: 80%;
+  border: 0;
+  outline: none;
+  padding: 20px 40px;
+  background: #141234;
+  color: white;
+}
+
+.input-chat-wrapper button {
+  color: white;
+  background-color: #141234;
+  margin-left: 10px;
+}
+
+.input-chat-wrapper button:hover {
+  color: white;
+  background-color: #141234;
+}
