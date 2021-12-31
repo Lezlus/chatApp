@@ -11,7 +11,12 @@ const authService = {
       .catch(error => console.log(error))
   },
   getMessageHistoryData: messageHistoryId => {
-    return axiosConfig.get(`http://127.0.0.1:8000/api/get-message-history/${messageHistoryId}`)
+    let config = {
+      headers: {
+        Authorization: `JWT ${localStorage.getItem('token')}`
+      }
+    }
+    return axiosConfig.get(`http://127.0.0.1:8000/api/get-message-history/${messageHistoryId}`, config)
       .then(response => response.data)
       .catch(error => console.log(error))
   },
@@ -21,10 +26,35 @@ const authService = {
       .catch(error => console.log(error))
   },
   createMessage: messageData => {
-    return axiosConfig.post('http://127.0.0.1:8000/api/create-message/', messageData)
+    let config = {
+      headers: {
+        Authorization: `JWT ${localStorage.getItem('token')}`
+      }
+    }
+    return axiosConfig.post('http://127.0.0.1:8000/api/create-message/', messageData, config)
       .then(response => response.data)
       .catch(error => console.log(error))
-  }
+  },
+  getAuthUserWithToken: () => {
+    let config = {
+      headers: {
+        Authorization: `JWT ${localStorage.getItem('token')}`
+      }
+    }
+    return axios.get('http://127.0.0.1:8000/api/current-user/', config)
+      .then(response => response.data)
+      .catch(error => error)
+  },
+  loginAuthUser: data => {
+    return axios.post('http://127.0.0.1:8000/api/token-auth/', data)
+      .then(response => response.data)
+      .catch(error => console.log(error))
+  },
+  registerUser: data => {
+    return axios.post('http://127.0.0.1:8000/api/create-user/', data)
+      .then(response => response.data)
+      .catch(error => console.log(error))
+  },
 }
 
 export default authService;

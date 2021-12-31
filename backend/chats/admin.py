@@ -12,8 +12,8 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     
     list_display = ('username','is_staff', 'is_active', 'date_joined', 'message_history')
-    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('message_history',)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields': ('message_history',)}),)
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('message_history', 'is_online')}),)
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields': ('message_history', 'is_online')}),)
 
 
 class MessageAdmin(admin.ModelAdmin):

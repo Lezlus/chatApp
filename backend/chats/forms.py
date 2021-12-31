@@ -7,7 +7,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('message_history',)
+        fields = UserCreationForm.Meta.fields + ('message_history', 'is_online')
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -15,4 +15,4 @@ class CustomUserChangeForm(UserChangeForm):
 
         class Meta:
             model = CustomUser
-            fields = ("message_history",)
+            fields = ("message_history", 'is_online')

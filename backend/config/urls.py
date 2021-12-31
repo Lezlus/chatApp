@@ -21,6 +21,6 @@ urlpatterns = [
     path('chat/', include('chats.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('apli/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    # path('apli/dj-rest-auth/', include('dj_rest_auth.urls')),
+    # path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 ]

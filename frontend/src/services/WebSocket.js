@@ -20,11 +20,16 @@ class WebSocketService {
 
     this.socketRef.onopen = () => {
       console.log("socket is open")
-      // this.sendMessage("Python and React are connected")
+      // this.callbacks["notifyUserIsActive"]()
     }
     this.socketRef.onmessage = (e) => {
+      const data = JSON.parse(e.data)
+      if (data.option === "userActive") {
+        this.setActiveUser(e.data);
+      } else {
+        this.socketNewMessage(e.data);
+      }
       console.log("chat socket recieved data")
-      this.socketNewMessage(e.data);
     }
     this.socketRef.onclose = () => {
       console.error("chat socket closed");
@@ -32,27 +37,55 @@ class WebSocketService {
 
   }
 
-  sendMessage(msg) {
+  sendUserIsActive(userData) {
     try {
       this.socketRef.send(JSON.stringify({
-        'message': msg
+        'username': userData.username,
+        'user_Id': userData.userId,
+        'option': "active_notification"
       }));
     } catch (error) {
       console.log(error.message)
     }
   }
 
-  newChatMessage(msg) {
-    this.sendMessage(msg);
+  sendMessage(msgData) {
+    try {
+      this.socketRef.send(JSON.stringify({
+        'message': msgData.message,
+        'username': msgData.username,
+        'user_Id': msgData.userId,
+        'option': "sendMessage"
+      }));
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  newChatMessage(msgData) {
+    this.sendMessage(msgData);
   }
 
   socketNewMessage(data) {
     const parsedData = JSON.parse(data);
-    this.callbacks["newMessage"](parsedData.message)
+    this.callbacks["newMessage"](parsedData)
+  }
+
+  setActiveUser(data) {
+    const parsedData = JSON.parse(data);
+    this.callbacks["activeUser"](parsedData)
   }
 
   addCallbacks(newMessageCallback) {
     this.callbacks["newMessage"] = newMessageCallback;
+  }
+
+  addUserActive(callback) {
+    this.callbacks["activeUser"] = callback;
+  }
+
+  notifyUserOnline(callback) {
+    this.callbacks["notifyUserIsActive"] = callback;
   }
 
   isSocketOpen() {

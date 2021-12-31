@@ -3,13 +3,112 @@
   --main-secondary-color: #1A1E3D;
   --main-txt-color: #696A7E;
   --main-txt-hover-color: #C5C6D3;
+  --main-form-txt-color: #FDBE33;
 }
 
 body {
   background-color: var(--main-bg-color);
 }
 
+@media screen and (max-width: 600px) {
+  .home-page-desktop {
+    display: none;
+  }
+}
+
+/* hamburger button */
+.hamburger-btn-wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  z-index: 4;
+  background-color: #3a4552;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 10px;
+  top: 0%;
+  right: 0%;
+}
+
+.hamburger-btn {
+  width: 50px;
+  height: 6px;
+  background: white;
+  border-radius: 5px;
+  transition: all .4s ease-in-out;
+}
+
+.hamburger-btn::before, 
+.hamburger-btn::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 6px;
+  background: white;
+  border-radius: 5px;
+  transition: all .4s ease-in-out;
+}
+
+.hamburger-btn::before {
+  transform: translateY(-16px);
+  
+}
+
+.hamburger-btn::after {
+  transform: translateY(16px);
+}
+
+.hamburger-btn-wrapper.open .hamburger-btn {
+  transform: translateX(-50px);
+  background: transparent;
+}
+
+.hamburger-btn-wrapper.open .hamburger-btn::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+
+.hamburger-btn-wrapper.open .hamburger-btn::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+
 /* room list side bar styling */
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #FFFFCC;
+  overflow-x: hidden;
+  transition: 0.5s;
+  border-radius: 0px 25px 25px 0px;
+}
+
+.overlay-right {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  background-color: transparent;
+  overflow-x: hidden;
+}
+
+.overlay-content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
 .room-list {
   background-color: var(--main-secondary-color);
 }
@@ -28,6 +127,16 @@ body {
 
 .room-bar h5 {
   color: var(--main-txt-color);
+}
+
+.user-active {
+  color: #58D638;
+  margin-left: 10px;
+}
+
+.user-inactive {
+  color: var(--main-txt-color);
+  margin-left: 10px;
 }
 
 /* room chatbox styling */
@@ -60,8 +169,15 @@ body {
   justify-content: flex-start !important;
 }
 
+.author-chat-bubble {
+  background: rgba(31, 28, 90, 1) !important;
+}
+
+.chat-bubble {
+  background: rgba(42, 42, 54, 1) !important;
+}
+
 .msg-text {
-  background: rgba(31, 28, 90, 1);
   padding: 20px 40px;
   border-radius: 8px;
   font-weight: 300;
@@ -96,4 +212,41 @@ body {
 .input-chat-wrapper button:hover {
   color: white;
   background-color: #141234;
+}
+
+/* login/ register form */
+
+form .form-main-title {
+  color: white;
+}
+
+.form-control {
+  background-color: #09090a !important;
+  border: none !important;
+  color: var(--main-form-txt-color);
+}
+
+.form-control:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0px black;
+  background-color: #09090a;
+  color: var(--main-form-txt-color);
+}
+
+.form-button {
+  background-color: var(--main-form-txt-color);
+  color: black;
+}
+
+@media screen and (max-width: 412px) {
+  .form-mobile-container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .form-button {
+    width: 100%;
+  }
 }
